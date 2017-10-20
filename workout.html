@@ -1,50 +1,103 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Workout Builder</title>
-    <link rel="stylesheet" href="workout.css">
-  </head>
-  <body>
-    <h1>Build Your Workout</h1>
-      <form class="form-builder" action="index.html" method="post">
-        <div class="">
-          <input type="text" name="" value="" placeholder="Exercise Name">
-            <label for="">Sets</label>
-            <select name="sets" required>
-              <option value="1">1</option>
-              <option value="2">2</option>
-                <option value="3" selected>3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-            </select>
-          <input type="text" name="" value="" placeholder="Reps">
-            <div class="second">
-              <input type="text" name="" value="" placeholder="Percentage">
-              <input type="checkbox" name="" value="">
-              <label for="">Both Sides</label>
-            </div>
-              <div class="second">
-                <textarea class="text-area" name="name"></textarea>
-              </div>
-              <div class="second">
-                <input type="checkbox" name="" value="">
-                <label for="">Completion Lift</label>
-              </div>
-            </div>
-            <div class="second">
-              <button type="submit" name="button">Save</button>
-            </div>
-          </form>
-  </body>
+	<head>
+		<meta charset="utf-8">
+		<title>Workout Builder</title>
+		<link rel="stylesheet" href="workout.css">
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+		<!-- include our dependency on angular -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+		<script src="https://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+
+		<script src="workout.js"></script>
+	</head>
+	<body ng-app='app' ng-controller='HomeCtrl'>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<ui-view></ui-view>
+			</div>
+		</div>
+		<script type="text/ng-template" id="/home.html">
+			<h1 class="title-title">Today's Workout</h1>
+			<div layout="column" layout-align="center center">
+				<div class="list">
+					<div class="cards">
+						<div class="divider-line"></div>
+						<div ng-repeat="workout in workouts track by $index">
+							<h1 class="name">{{workout.name}}</h1>
+							<div class="description">{{workout.description}}</div>
+
+							<div class="set-title"># of Sets: {{workout.sets.length}}</div>
+							<div class="sets" layout="column" layout-align="center center" ng-repeat="set in workout.sets track by $index">
+								<div class="set-checkoff" layout="row" layout-align="start start">
+									<div class="set">
+										{{set.reps}} reps
+									</div>
+									<md-checkbox class="checkbox" ng-model="set.complete" aria-label="Checkbox 1"></md-checkbox>
+								</div>
+							</div>
+							<div></div>
+							<div class="divider-line"></div>
+						</div>
+					</div>
+				</div>
+				<a href="#/build"><div class="add-button">Add a Workout</div></a>
+			</div>
+		</script>
+		<script type="text/ng-template" id="/build.html">
+			<div layout="column" layout-align="center center">
+				<div class="list">
+					<h1>Build Your Workout</h1>
+					<form class="form">
+						<div layout="column" layout-align="center center"class="">
+							<input class="add-name" type="text" ng-model="name" placeholder="Exercise Name">
+							<div class="add-sets not-center"layout="row" layout-align="space-between center">
+								<span class="add-sets">Sets</span>
+								<md-select ng-model="setCount" ng-change="getNumber()">
+									<md-option ng-repeat="i in getLength(10) track by $index" value="{{$index + 1}}">
+										{{$index + 1}}
+									</md-option>
+								</md-select>
+							</div>
+							<div class="add-sets not-center" layout="row" layout="space-between center">
+								<!-- <label class="add-set" for="">Custom reps for sets</label> -->
+								<!-- <input type="checkbox" ng-model="customSets"> -->
+								<md-checkbox ng-model="customSets" aria-label="Checkbox 1">
+									Custom reps for sets
+								</md-checkbox>
+							</div>
+							<div class="add-sets" ng-if="customSets" ng-repeat="set in sets track by $index">
+								<input class="add-set" type="number" ng-model="set.reps" placeholder="# of reps for set {{$index + 1}}">
+							</div>
+							<div class="add-sets" ng-if="!customSets">
+								<input class="add-set" type="number" ng-model="$parent.reps" placeholder="Reps for all sets" ng-change="addSets(reps)">
+							</div>
+							<!-- <div class="second">
+								<input type="text" ng-model="percentage" placeholder="Percentage">
+								<input type="checkbox" ng-model="bothSides">
+								<label for="">Both Sides</label>
+							</div> -->
+							<div class="second add-description">
+								<textarea class="text-area add-description" ng-model="description" placeholder="Description"></textarea>
+							</div>
+							<!-- <div class="second">
+								<input type="checkbox" ng-model="completionLift">
+								<label for="">Completion Lift</label>
+							</div> -->
+						</div>
+						<div class="add-sets" layout="row" layout="center center" class="second">
+							<md-button class="add-sets cancel-button">Cancel</md-button>
+							<md-button class="add-sets add-button" ng-click="add()">Add</md-button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-animate.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-aria.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.min.js"></script>
+		<!-- Angular Material Library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+	</body>
 </html>

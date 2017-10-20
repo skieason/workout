@@ -1,24 +1,138 @@
 h1 {
-  color: black;
+	color: black;
 }
 .form-builder {
 
 }
 .second {
-  padding-top: 5px;
-  
+	padding-top: 5px;
+
+}
+
+.build {
+	text-align: center;
+	width: 100%;
+}
+
+.form {
+	width: 300px;
+	margin: 0 auto;
 }
 
 .text-area {
-  resize: none;
-  width: 150px;
-  height: 25px;
-  border-radius: 5px;
-  border: 1px solid gray;
-  color: white;
-  font-size: 1.2em;
+	resize: none;
+	/*width: 150px;*/
+	/*height: 25px;*/
+	/*border-radius: 2px;*/
+	border: 1px solid #d8d8d8;
+	color: black;
+	font-size: 1.2em;
 }
 
 text-area:active {
-  outline:none !important;
+	outline:none !important;
+}
+
+.divider-line {
+	width: 100%;
+	border-bottom: 1px solid grey;
+}
+
+input {
+	margin-top: -1px;
+	padding: 5px 10px;
+	box-sizing: border-box;
+
+}
+textarea {
+	padding: 5px 10px;
+
+	box-sizing: border-box;
+}
+
+a {
+	margin-top: 10px;
+	text-decoration: none;
+	color: black;
+}
+
+.cards {
+	width: 300px;
+	margin: 0 auto;
+}
+
+.add-button {
+	padding: 10px;
+	background-color: #b9eabe !important;
+	border-radius: 3px;
+}
+
+.add-button:hover {
+	background-color: #62c96e !important;
+}
+
+.cancel-button {
+	background-color: #d8d8d8 !important;
+}
+.cancel-button:hover {
+	background-color: #f7b9b9 !important;
+}
+
+.list {
+	width: 50%;
+	text-align: center;
+}
+
+.set-checkoff {
+	line-height: 0px;
+	height: 20px;
+}
+.checkbox {
+	margin-top: -10px;
+}
+.title-title {
+	/*width: 50%;*/
+	text-align: center;
+}
+.name {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.description {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.sets {
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.set {
+	width: 100%;
+}
+
+.set-title {
+	margin-bottom: 20px;
+}
+
+.add-name {
+	width: 100%;
+}
+
+.add-description {
+	width: 100%;
+}
+
+.not-center {
+	text-align: left;
+}
+
+.add-sets {
+	width: 100%;
+}
+
+.add-set {
+	width: 100%;
 }
