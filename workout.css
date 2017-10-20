@@ -1,0 +1,24 @@
+h1 {
+  color: black;
+}
+.form-builder {
+
+}
+.second {
+  padding-top: 5px;
+  
+}
+
+.text-area {
+  resize: none;
+  width: 150px;
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  color: white;
+  font-size: 1.2em;
+}
+
+text-area:active {
+  outline:none !important;
+}
